@@ -6,10 +6,12 @@ import cgitb
 import html
 cgitb.enable()
 
-import db
+from db import DB
 
 from piezas_portada import *
 from piezas import *
+
+database = DB('localhost',"root","","tarea2")
 
 print("Content-type: text/html; charset=UTF-8")
 utf8stdout = open(1, 'w', encoding='utf-8',closefd=False)
@@ -58,34 +60,27 @@ print("""
           </tr>
         </thead>""",file=utf8stdout)
 
-test_values = [["2021-03-30 13:21","Chillán","Plaza de Armas","insecto","./../../T2/images/avistamientos/01/2-1.jpg"]]
+
+
 print("<tbody>",file=utf8stdout)
-for avist in test_values:
-    print("<tr>",file=utf8stdout)
-    print(f"<th>{avist[0]}</th>",file=utf8stdout)
-    print(f"<td>{avist[1]}</td>",file=utf8stdout)
-    print(f"<td>{avist[2]}</td>",file=utf8stdout)
-    print(f"<td>{avist[3]}</td>",file=utf8stdout)
-    print(f'<td><img src="{avist[4]}" width="320" height="240" alt=""></td>',file=utf8stdout)
-    print("</tr>",file=utf8stdout)
+query = database.portada_query()
+
+for resultado in query:
+  print("<tr>",file=utf8stdout)
+  print(f"<th>{resultado[0]}</th>",file=utf8stdout)
+  print(f"<th>{resultado[1]}</th>",file=utf8stdout)
+  print(f"<th>{resultado[2]}</th>",file=utf8stdout)
+  print(f"<th>{resultado[3]}</th>",file=utf8stdout)
+  print(f'<td><img src="../../{resultado[4]}" width="320" height="240" alt="{resultado[5]}"></td>',file=utf8stdout)
+  print("</tr>",file=utf8stdout)
 print("</tbody>",file=utf8stdout)
 print("""     </table>
     </div>
   </div>
 </div>
 """,file=utf8stdout)
-#print("<tbody>")
 
-#for datos:
-#    <tr>
-#        <th></th>
-#        <td></td>
-#        <td></td>
-#        <td></td>
-#        <td>
-#            <img src="" width="320" height="240" alt="">
-#        </td>
-#    </tr>
+
             
             
 print(footer,file=utf8stdout)
