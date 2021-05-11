@@ -293,7 +293,7 @@ def valida_celular(celular):
     return (False,"Celular no cumple el formato")
 
 def valida_fecha(fecha):
-    regex = "\d{4}-((0[1-9])|(1[0-2]))-(([0-2][1-9])|(3[01])) (([01][0-9])|(2[0-3])):(([0-5][0-9])|(60))"
+    regex = "\d{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1])) (([0-1][0-9])|(2[0-3])):(([0-5][0-9]))"
     if fecha == "":
         return (False,"Se requiere fecha")
     x = re.search(regex,fecha)

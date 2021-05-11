@@ -30,6 +30,8 @@ class DB:
     def avistamientos_query(self,page):
         if type(page) != int:
             page = 0
+        else:
+            page = page * 5
         sql_query = f'''
         SELECT AV.dia_hora,CO.nombre, AV.sector, AV.nombre, CA.conteo,TF.conteo, AV.id
         FROM comuna CO, avistamiento AV,
@@ -40,8 +42,10 @@ class DB:
         GROUP BY DA.avistamiento_id) TF,
         (SELECT avistamiento_id AS id ,COUNT(avistamiento_id) AS conteo FROM detalle_avistamiento GROUP BY avistamiento_id) CA
         WHERE AV.comuna_id = CO.id AND TF.avistamiento_id = AV.id AND CA.id = AV.id
+        ORDER BY AV.dia_hora DESC
         LIMIT 5
-        OFFSET {page} '''
+        OFFSET {page} 
+        '''
         self.cursor.execute(sql_query)
         return self.cursor.fetchall()
 
@@ -128,3 +132,9 @@ class DB:
         self.cursor.execute(sql_query2)
         resultado_2 = self.cursor.fetchall()
         return (resultado_1,resultado_2)
+
+    def get_avist_pages(self):
+        sql_query = "SELECT COUNT(*) FROM avistamiento"
+        self.cursor.execute(sql_query)
+        return int(self.cursor.fetchone()[0]) // 5
+        
