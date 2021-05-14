@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 footer = """
 <footer class="footer">
     <div class="columns">
@@ -122,7 +125,7 @@ formulario_informar = """
           <div class="mr-3 block column">
               <h2 class="title">Lugar:</h2> 
               <div class="field">
-                  <label class="label">Región:</label>
+                  <label class="label">Región<span class="has-text-danger" >*</span>:</label>
                   <div class="select">
                     <select id="region" name="region" onchange="region_change(this)">
                       <option value=""> Seleccione una región</option>
@@ -130,7 +133,7 @@ formulario_informar = """
                   </div>
               </div>
               <div class="field">
-                  <label class="label">Comuna:</label>
+                  <label class="label">Comuna<span class="has-text-danger" >*</span>:</label>
                   <div class="select">
                     <select id="comuna" name="comuna">
                       <option value=""> Seleccione una comuna</option>
@@ -145,12 +148,12 @@ formulario_informar = """
           <div class="ml-3 block column">
               <h2 class="title">Datos de Contacto:</h2>
               <div class="field">
-                  <label class="label">Nombre:</label>
+                  <label class="label">Nombre<span class="has-text-danger" >*</span>:</label>
                   <input id="nombre" class="input" type="text" name="nombre" size="100" maxlength="200">
                   <p class="help">Debe empezar con mayúscula y en caso de ser más de uno separarse con espacios</p>
               </div>
               <div class="field">
-                  <label class="label">Email:</label>
+                  <label class="label">Email<span class="has-text-danger" >*</span>:</label>
                   <input id="email" class="input" type="text" name="email" size="100">
               </div>
               <div class="field">
@@ -164,11 +167,11 @@ formulario_informar = """
           <div class="block">
             <h2 class="title">Información de Avistamiento:</h2>
             <div class="field">
-                <label class="label">Día hora:</label>
+                <label class="label">Día hora<span class="has-text-danger" >*</span>:</label>
                 <input id="dia-hora-avistamiento-1" class="input dia-hora-avistamiento" type="text" placeholder="año-mes-diahora:minuto" name="dia-hora-avistamiento" size="20">
             </div>
             <div class="field">
-              <label class="label">Tipo:</label>
+              <label class="label">Tipo<span class="has-text-danger" >*</span>:</label>
               <div class="select">
                 <select class="tipo-avistamiento" name="tipo-avistamiento">
                   <option value=""> Seleccione un tipo </option>
@@ -180,7 +183,7 @@ formulario_informar = """
               </div>
             </div>
             <div class="field">
-              <label class="label">Estado:</label>
+              <label class="label">Estado<span class="has-text-danger" >*</span>:</label>
               <div class="select">
                 <select name="estado-avistamiento" class="estado-avistamiento">
                   <option value=""> Seleccione un estado </option>
@@ -192,7 +195,7 @@ formulario_informar = """
             </div>
             <div class="archivos">
               <div class="field">
-                <label class="label">Imagen:</label>
+                <label class="label">Imagen<span class="has-text-danger" >*</span>:</label>
                 <div class="file has-name">
                     <label class="file-label">
                         <input class="file-input foto-avistamiento" type="file" name="foto-avistamiento" onchange="filename_change(this)">
@@ -211,7 +214,7 @@ formulario_informar = """
                 </div>
               </div>
             </div>
-            <p class="help">Los formatos compatibles son .jpg .jpeg .png</p>
+            <p class="help">Los formatos compatibles son .jpg .jpeg .png, las imágenes deben pesar menos de 10mb</p>
             <button class="button mt-4" type="button" onclick="add_photo(this,0)">
               Agregar otra foto
             </button>

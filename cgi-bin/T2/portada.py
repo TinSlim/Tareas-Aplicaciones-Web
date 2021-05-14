@@ -10,39 +10,21 @@ from db import DB
 
 from piezas_portada import *
 from piezas import *
+from data_base import *
 
-database = DB('localhost',"root","","tarea2")
+database = DB('localhost',USER_DB,PASS_DB,DB_DB)
 
 print("Content-type: text/html; charset=UTF-8")
 utf8stdout = open(1, 'w', encoding='utf-8',closefd=False)
+
+print("")
 print("""<!DOCTYPE html><html lang="es">""")
 print(inicio_head,file=utf8stdout)
 print("<body>")
 print(navbar,file=utf8stdout)
 print(hero_portada,file=utf8stdout)
 
-"""print(
-<div class="columns is-mobile mt-5 mb-5">
-  <div class="column is-three-fifths is-offset-one-fifth">
-    <div class="box table-container">
-      <p class="subtitle is-4"> Últimos avistamientos: </p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Fecha - hora</th>
-              <th>Comuna</th>
-              <th>Sector</th>
-              <th>Tipo</th>
-              <th>Foto</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        <table>
-      </div>
-    </div>
-</div>
-"""#,file=utf8stdout)
+
 
 print("""
 <div class="columns is-mobile mt-5 mb-5">

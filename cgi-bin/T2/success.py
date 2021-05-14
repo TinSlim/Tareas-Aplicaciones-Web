@@ -53,36 +53,6 @@ if ok_data:
     ok_data = check_celular(arguments["celular"])
 
 
-
-#if len(arguments) == 5 and ("nombre-medico" and "experiencia-medico" and "especialidad-medico" and "email-medico" and "celular-medico" in arguments.keys()):
-#    print("""
-#    <div>
-#        <h1>Los datos fueron enviados con éxito</h1>
-#        <br>
-#        <h3>Se han recibido los siguientes datos</h3>
-#    """,file=utf8stdout)    
-#    to_add = (html.escape(arguments["nombre-medico"].value),html.escape(arguments["experiencia-medico"].value),
-#    html.escape(arguments["especialidad-medico"].value),
-#    #None,
-#    html.escape(arguments["email-medico"].value), html.escape(arguments["celular-medico"].value))#
-#
-#    database.save_doctor(to_add)
-#    for i in arguments.keys():
-#        print("<li>", html.escape(arguments[i].name), ": ", html.escape(arguments[i].value),file=utf8stdout)
-#else:
-#    print("""
-#    <div>
-#        <h1>No se enviaron los datos</h1>
-#        <br>
-#        <h3>Debe llenar todas las entradas del formulario</h3>
-#    """,file=utf8stdout)  
-#print("""
-#    </div>
-#</body>
-#</html>
-#""",file=utf8stdout)
-
-
 if ok_data:
     print("""
     <div class="box mt-3">

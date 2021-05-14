@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import cgi
 import cgitb
 import html
@@ -7,19 +10,17 @@ from db import DB
 import validacion
 from piezas_portada import *
 from piezas import *
-
-database = DB('localhost',"root","","tarea2")
+from data_base import *
+database = DB('localhost',USER_DB,PASS_DB,DB_DB)
 
 print("Content-type: text/html; charset=UTF-8")
 utf8stdout = open(1, 'w', encoding='utf-8',closefd=False)
+f = open("./proxy.txt","a")
+
+print("")
 print("""<!DOCTYPE html><html lang="es">""")
-print(success_head,file=utf8stdout)
-
-
 print("""
-<!DOCTYPE html>
-<html lang="es">
-  <head>
+    <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Vivan los Bichos</title>
@@ -32,7 +33,7 @@ print("""
     <script src="./../../T2/js/validacion.js"></script>
   </head>
   <body>
-""")
+""",file=utf8stdout)
 print(navbar,file=utf8stdout)
 print(hero_informar,file=utf8stdout)
 
@@ -43,8 +44,8 @@ print(hero_informar,file=utf8stdout)
 #    print(forms[key])
 #    print("</h1>")
 form = cgi.FieldStorage()
-validacion.check_form(form)
-
+a =validacion.check_form(form)
+#f.write(str(a))
 #form = cgi.FieldStorage()
 #if cgi.FieldStorage():
 #  print("<h1>" + str(form['region']) + "</h1>")

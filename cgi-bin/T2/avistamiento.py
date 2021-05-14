@@ -10,12 +10,15 @@ from db import DB
 
 from piezas_portada import *
 from piezas import *
+from data_base import *
 
-f = open("./proxy.txt","a")
-database = DB('localhost',"root","","tarea2")
+# f = open("./proxy.txt","a")
+database = DB('localhost',USER_DB,PASS_DB,DB_DB)
 
 print("Content-type: text/html; charset=UTF-8")
 utf8stdout = open(1, 'w', encoding='utf-8',closefd=False)
+
+print("")
 print("""<!DOCTYPE html><html lang="es">""")
 
 print(avistamiento_head,file=utf8stdout)
@@ -24,7 +27,7 @@ print("<body>",file=utf8stdout)
 
 print(navbar,file=utf8stdout)
 
-
+contador = -1
 form = cgi.FieldStorage()
 if 'num' in form.keys():
     if type(form['num']) is not list:

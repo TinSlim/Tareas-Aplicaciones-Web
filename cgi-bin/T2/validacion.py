@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import re
 
 #var meses_31_dias = ["01","03","05","07","08","10","12"]
@@ -7,15 +10,14 @@ from db import DB
 from datetime import datetime, date
 import os
 import filetype
+from data_base import *
 
 
-
-database = DB('localhost',"root","","tarea2")
+database = DB('localhost',USER_DB,PASS_DB,DB_DB)
 
 f = open("./proxy.txt","a")
 
 def check_form(formulario):
-    
     # primero se revisa que estén los atributos:
     valores_correctos = []
     #----- Region
@@ -164,12 +166,14 @@ def check_form(formulario):
             errores += "<li>" + resultado[1] + "</li>"
         resultado_total = resultado_total and resultado[0]
     
+    #f.write("Tipo :"+ str(tipo_error)
 
     id_avistamiento = 0
     id_detalle = 0
     if (cantidad_fechas == cantidad_tipos == cantidad_estados) and (fecha_ok and tipos_ok and estados_ok) and resultado_total:
         # Todas las condiciones anteriores están OK
         fotos_paths_actuales = add_fotos(formulario)
+        f.write(str(fotos_paths_actuales))
         if fotos_paths_actuales[0] and len(fotos_paths_actuales[1]) == cantidad_fechas:
             # Todo Ok, queda agregar las cosas
             #----- Avistamiento
@@ -183,9 +187,13 @@ def check_form(formulario):
                     database.save_foto((foto[0],foto[1],id_detalle))
                 i = i - 1
         else:
-            return
+            f.write("Final false \n")
+            return False
     else:
-        return
+        f.write("Final false \n")
+        return False
+    f.write("Final true \n")
+    return True
 
 
     
@@ -222,7 +230,7 @@ def check_form(formulario):
     
     
 def valida_region(region):
-    f.write(str(region) + "\n")
+    #f.write(str(region) + "\n")
     resultado = database.get_region_id(region)
     
     if resultado:
@@ -359,12 +367,6 @@ test_form = {
     "tipo-avistamiento" : ["no sé","insecto"],
     "estado-avistamiento" : ["vivo","muerto"]
 }
-#print(check_form(test_form))
-
-#print(valida_region("Región del Ñuble"))
-#print(valida_comuna("Chillan",16))
-#if test_form.get("region"):
-#    print("Ok")
 
 def add_fotos(form):
     cantidad_fotos = 0
@@ -383,7 +385,7 @@ def add_fotos(form):
                     path_archivo = 'T2/media/'+hash_archivo
                     open(path_archivo,'wb').write(fileitem.file.read())
                     size = os.fstat(fileitem.file.fileno()).st_size
-                    if size <= 50000:
+                    if size <= 12000000:
                         tipo_real = filetype.guess(path_archivo)
                         if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                             imgs_ok = imgs_ok and True
@@ -407,7 +409,8 @@ def add_fotos(form):
                 path_archivo = 'T2/media/'+hash_archivo
                 open(path_archivo,'wb').write(fileitem.file.read())
                 size = os.fstat(fileitem.file.fileno()).st_size
-                if size <= 50000:
+                f.write("size: "+ str(size) + "\n")
+                if size <= 12000000:
                     tipo_real = filetype.guess(path_archivo)
                     if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                         imgs_ok = imgs_ok and True
@@ -420,7 +423,7 @@ def add_fotos(form):
                     error = "Archivo muy pesado"
                     imgs_ok = imgs_ok and False
     else:
-        return (False) #Todo
+        return (False) #TODO
     
     i = 0
     if imgs_ok:
@@ -428,6 +431,8 @@ def add_fotos(form):
             name_form = 'foto-avistamiento-'+str(i)          
             if name_form in form.keys():
                     if type(form[name_form]) is list:
+                        if (len(form[name_form])):
+                            return (False,[])
                         for foto in form[name_form]:
                             offset_foto += 1
                             fileitem = foto
@@ -437,7 +442,8 @@ def add_fotos(form):
                                 path_archivo = 'T2/media/'+hash_archivo
                                 open(path_archivo,'wb').write(fileitem.file.read())
                                 size = os.fstat(fileitem.file.fileno()).st_size
-                                if size <= 50000:
+                                f.write("size: "+ str(size) + "\n")
+                                if size <= 12000000:
                                     tipo_real = filetype.guess(path_archivo)
                                     if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                                         imgs_ok = imgs_ok and True
@@ -460,7 +466,8 @@ def add_fotos(form):
                             path_archivo = 'T2/media/'+hash_archivo
                             open(path_archivo,'wb').write(fileitem.file.read())
                             size = os.fstat(fileitem.file.fileno()).st_size
-                            if size <= 50000:
+                            f.write("size: "+ str(size) + "\n")
+                            if size <= 12000000:
                                 tipo_real = filetype.guess(path_archivo)
                                 if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                                     imgs_ok = imgs_ok and True
@@ -479,3 +486,4 @@ def add_fotos(form):
                 os.remove(path_foto[0])
         return (False,error)
     return (True,fotos_paths)
+

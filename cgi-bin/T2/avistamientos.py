@@ -7,14 +7,17 @@ import html
 cgitb.enable()
 
 from db import DB
+from data_base import *
 
 from piezas_portada import *
 from piezas import *
 
-database = DB('localhost',"root","","tarea2")
+database = DB('localhost',USER_DB,PASS_DB,DB_DB)
 
 print("Content-type: text/html; charset=UTF-8")
 utf8stdout = open(1, 'w', encoding='utf-8',closefd=False)
+
+print("")
 print("""<!DOCTYPE html><html lang="es">""")
 
 print(avistamientos_head,file=utf8stdout)
