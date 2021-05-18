@@ -172,7 +172,6 @@ def check_form(formulario):
     if not resultado_estado[0]:
         errores_final.append(resultado_estado[1])
 
-    # TODO
     resultados_unicos = [resultado_region, resultado_comuna, resultado_sector, resultado_nombre, resultado_email,resultado_celular]
     resultado_total = True
     errores = ""
@@ -211,37 +210,6 @@ def check_form(formulario):
     else:
         return (False,errores_final)
 
-
-    
-        
-
-    
-    
-        
-    
-    
-    #-------- Fotos
-    #contador_fotos = 0
-    #if "foto-avistamiento" in formulario.keys():
-    #    for foto in formulario['foto-avistamiento']:
-    #        if contador_fotos = cantidad_avistamientos:
-    #            return "eRROR"
-    #        else:
-    #            fileitem = foto
-    #            if fileitem.filename:
-    #                filenames = fileitem.filename
-    #                hash_archivo = database.hash_name(filenames)
-    #                open('media/'+hash_archivo,'wb').write(fileitem.file.read())
-    #                size = os.fstat(fileitem.file.fileno()).st_size
-    #                if size <= 50000:
-    #                    tipo_real = filetype.guess('media/'+hash_archivo)
-    #                    if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
-    #                        img_ok = True
-    #                    else:
-    #                        error = "Tipo de archivo no válido"
-    #                        os.remove("media/"+hash_archivo)
-    #                else:
-    #                    error = "Archivo muy pesado"#
 
     
     
