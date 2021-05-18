@@ -57,7 +57,7 @@ for resultado in query:
   print(f"<th>{html.escape(resultado[1])}</th>",file=utf8stdout)
   print(f"<th>{html.escape(resultado[2])}</th>",file=utf8stdout)
   print(f"<th>{html.escape(resultado[3])}</th>",file=utf8stdout)
-  print(f'<td><img src="../../{html.escape(resultado[4])}" width="320" height="240" alt="{html.escape(resultado[5])}"></td>',file=utf8stdout)
+  print(f'<td><img src="../../T2/media/{html.escape(resultado[4])}" width="320" height="240" alt="{html.escape(resultado[5])}"></td>',file=utf8stdout)
   print("</tr>",file=utf8stdout)
 print("</tbody>",file=utf8stdout)
 print("""     </table>

@@ -15,7 +15,7 @@ from data_base import *
 
 database = DB('localhost',USER_DB,PASS_DB,DB_DB)
 
-# f = open("./proxy.txt","a")
+#f = open("./proxy.txt","a")
 
 def check_form(formulario):
     # primero se revisa que estén los atributos:
@@ -333,15 +333,15 @@ def valida_imagen(fileitem):
     if fileitem.filename:
         filenames = fileitem.filename
         hash_archivo = database.hash_name(filenames)
-        open('media/'+hash_archivo,'wb').write(fileitem.file.read())
+        open('T2/media/'+hash_archivo,'wb').write(fileitem.file.read()) # anakena ../../T2/media/
         size = os.fstat(fileitem.file.fileno()).st_size
         if size <= 50000:
-            tipo_real = filetype.guess('media/'+hash_archivo)
+            tipo_real = filetype.guess('T2/media/'+hash_archivo) # anakena ../../T2/media/
             if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                 img_ok = True
             else:
                 error = "Tipo de archivo no válido"
-                os.remove("media/"+hash_archivo)
+                os.remove("T2/media/"+hash_archivo)  # anakena ../../T2/media/
         else:
             error = "Archivo muy pesado"
 
@@ -371,14 +371,14 @@ def add_fotos(form):
                 if fileitem.filename:
                     filenames = fileitem.filename
                     hash_archivo = database.hash_name(filenames,offset_foto)
-                    path_archivo = 'T2/media/'+hash_archivo
+                    path_archivo = 'T2/media/'+hash_archivo # anakena ../../T2/media/
                     open(path_archivo,'wb').write(fileitem.file.read())
                     size = os.fstat(fileitem.file.fileno()).st_size
                     if size <= 12000000:
                         tipo_real = filetype.guess(path_archivo)
                         if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                             imgs_ok = imgs_ok and True
-                            fotos_paths.append([[path_archivo,filenames]])
+                            fotos_paths.append([[hash_archivo,filenames]])
                         else:
                             imgs_ok = imgs_ok and False
                             error = "El tipo de algún archivo no es válido"
@@ -395,7 +395,7 @@ def add_fotos(form):
             if fileitem.filename:
                 filenames = fileitem.filename
                 hash_archivo = database.hash_name(filenames,offset_foto)
-                path_archivo = 'T2/media/'+hash_archivo
+                path_archivo = 'T2/media/'+hash_archivo # anakena ../../T2/media/
                 open(path_archivo,'wb').write(fileitem.file.read())
                 size = os.fstat(fileitem.file.fileno()).st_size
                 #f.write("size: "+ str(size) + "\n")
@@ -403,7 +403,7 @@ def add_fotos(form):
                     tipo_real = filetype.guess(path_archivo)
                     if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                         imgs_ok = imgs_ok and True
-                        fotos_paths.append([[path_archivo,filenames]])
+                        fotos_paths.append([[hash_archivo,filenames]])
                     else:
                         error = "Tipo de archivo no válido"
                         os.remove(path_archivo)
@@ -420,8 +420,7 @@ def add_fotos(form):
             name_form = 'foto-avistamiento-'+str(i)          
             if name_form in form.keys():
                     if type(form[name_form]) is list:
-                        if (len(form[name_form])):
-                            #f.write("Error-val"+"tesxt+"+"\n ---")
+                        if (len(form[name_form]) >= 5):
                             return (False,"Hay más de 5 fotos en un avistamiento")
                         for foto in form[name_form]:
                             offset_foto += 1
@@ -429,7 +428,7 @@ def add_fotos(form):
                             if fileitem.filename:
                                 filenames = fileitem.filename
                                 hash_archivo = database.hash_name(filenames,offset_foto)
-                                path_archivo = 'T2/media/'+hash_archivo
+                                path_archivo = 'T2/media/'+hash_archivo # anakena ../../T2/media/
                                 open(path_archivo,'wb').write(fileitem.file.read())
                                 size = os.fstat(fileitem.file.fileno()).st_size
                                 #f.write("size: "+ str(size) + "\n")
@@ -437,7 +436,7 @@ def add_fotos(form):
                                     tipo_real = filetype.guess(path_archivo)
                                     if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                                         imgs_ok = imgs_ok and True
-                                        fotos_paths[i] += [[path_archivo,filenames]]
+                                        fotos_paths[i] += [[hash_archivo,filenames]]
                                     else:
                                         imgs_ok = imgs_ok and False
                                         error = "El tipo de algún archivo no es válido"
@@ -453,7 +452,7 @@ def add_fotos(form):
                         if fileitem.filename:
                             filenames = fileitem.filename
                             hash_archivo = database.hash_name(filenames,offset_foto)
-                            path_archivo = 'T2/media/'+hash_archivo
+                            path_archivo = 'T2/media/'+hash_archivo # anakena ../../T2/media/
                             open(path_archivo,'wb').write(fileitem.file.read())
                             size = os.fstat(fileitem.file.fileno()).st_size
                             #f.write("size: "+ str(size) + "\n")
@@ -461,7 +460,7 @@ def add_fotos(form):
                                 tipo_real = filetype.guess(path_archivo)
                                 if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
                                     imgs_ok = imgs_ok and True
-                                    fotos_paths[i] += [[path_archivo,filenames]]
+                                    fotos_paths[i] += [[hash_archivo,filenames]]
                                 else:
                                     error = "Tipo de archivo no válido"
                                     os.remove(path_archivo)
@@ -474,7 +473,7 @@ def add_fotos(form):
     if not imgs_ok:
         for group in fotos_paths:
             for path_foto in group:
-                os.remove(path_foto[0])
+                os.remove("T2/media/"+path_foto[0]) # anakena ../../T2/media/
         #f.write("Error-val"+str(error)+"\n ---")
         return (False,error)
     return (True,fotos_paths)

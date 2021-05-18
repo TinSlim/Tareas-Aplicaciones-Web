@@ -16,6 +16,16 @@ class DB:
         self.cursor = self.db.cursor()
 
     def portada_query(self):
+        # Antigua Query
+        # sql_query = '''
+        #SELECT DA.dia_hora, CO.nombre, AV.sector, DA.tipo , FO.ruta_archivo, FO.nombre_archivo
+        #FROM avistamiento AV, detalle_avistamiento DA, comuna CO , (
+        #SELECT min(id), ruta_archivo, nombre_archivo, detalle_avistamiento_id
+        #FROM foto
+        #GROUP BY detalle_avistamiento_id    
+        #) FO
+        #WHERE DA.avistamiento_id = AV.id AND AV.comuna_id=CO.id AND DA.id = FO.detalle_avistamiento_id ORDER BY DA.dia_hora DESC LIMIT 5
+        #'''
         sql_query = '''
         SELECT DA.dia_hora, CO.nombre, AV.sector, DA.tipo , FO.ruta_archivo, FO.nombre_archivo
         FROM avistamiento AV, detalle_avistamiento DA, comuna CO , (
@@ -23,7 +33,7 @@ class DB:
         FROM foto
         GROUP BY detalle_avistamiento_id    
         ) FO
-        WHERE DA.avistamiento_id = AV.id AND AV.comuna_id=CO.id AND DA.id = FO.detalle_avistamiento_id ORDER BY DA.dia_hora DESC LIMIT 5
+        WHERE DA.avistamiento_id = AV.id AND AV.comuna_id=CO.id AND DA.id = FO.detalle_avistamiento_id ORDER BY DA.id DESC LIMIT 5
         '''
         self.cursor.execute(sql_query)
         return self.cursor.fetchall()
