@@ -29,7 +29,7 @@ function valida_comuna(id_comuna){
 function valida_sector(id_sector){
     var sector = document.getElementById(id_sector);
     var sector_actual = sector.value;
-    var regex = /^[A-zÜÑÁÉÍÓÚáéíóúüñ0-9]+(\s[A-zÜÑÁÉÍÓÚáéíóúüñ0-9]+)*/;
+    var regex = /^[A-zÜÑÁÉÍÓÚáéíóúüñ0-9]+(\s[A-zÜÑÁÉÍÓÚáéíóúüñ0-9]+)*$/;
     var largo_sector = sector_actual.length;
     // No se escribió un sector, ok pues es OPCIONAL
     if (sector_actual == ""){
@@ -50,7 +50,7 @@ function validar_nombre(id_nombre) {
     var nombre = document.getElementById(id_nombre);
     var nombre_actual = nombre.value;
     var largo_nombre = nombre_actual.length;
-    var regex = /^(([A-ZÜÑÁÉÍÓÚ]+([a-záéíóúüñ]*))(\s[A-ZÜÑÁÉÍÓÚ]+([a-záéíóúüñ]*))*)/;// Nombres con caracteres especiales
+    var regex = /^(([A-ZÜÑÁÉÍÓÚ]+([a-záéíóúüñ]*))(\s[A-ZÜÑÁÉÍÓÚ]+([a-záéíóúüñ]*))*)$/;// Nombres con caracteres especiales
     if (nombre_actual == "") {
         corregir_mensaje += "<li> Ingrese un nombre </li>";
         return false;
@@ -85,7 +85,7 @@ function validar_email(id_correo) {
 function validar_celular(id_celular) {
     var celular = document.getElementById(id_celular);
     var celular_actual = celular.value;
-    var regex = /^\+569\d{8}/; // Numeros de chile
+    var regex = /^\+569\d{8}$/; // Numeros de chile
     if (celular_actual == ""){
         return true; // No escribió celular
     }
@@ -98,7 +98,7 @@ function validar_celular(id_celular) {
 
 function validar_fecha(clase_fecha) { // Formato año-mes-diahora:minuto 2000-09-11 12:11
     var nodos_fechas = document.getElementsByClassName(clase_fecha);
-    var regex = /\d{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1])) (([0-1][0-9])|(2[0-3])):(([0-5][0-9]))/; // regex fecha
+    var regex = /\d{4}-((0[1-9])|(1[0-2]))-((0[1-9])|([1-2][0-9])|(3[0-1])) (([0-1][0-9])|(2[0-3])):(([0-5][0-9]))$/; // regex fecha
     for (nodo of nodos_fechas) {
         fecha_actual = nodo.value;
         
@@ -185,7 +185,7 @@ function validar_estado(clase_estado) {
 function validar_imagenes(clase_imagen) {
     var nodos_lista_imagenes = document.getElementsByClassName(clase_imagen);
     var cantidad_imagenes = nodos_lista_imagenes.length;
-    var regex = /\S*.(?:jpg|jpeg|png|JPG|JPEG|PNG)/; // regex imagen
+    var regex = /\S*.(?:jpg|jpeg|png|JPG|JPEG|PNG)$/; // regex imagen
     for (nodo of nodos_lista_imagenes) {
         imagen = nodo.value;
         if (imagen.length < 1) {
