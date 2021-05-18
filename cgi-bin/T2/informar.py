@@ -20,9 +20,9 @@ form = cgi.FieldStorage()
 
 
 
-print("Content-type: text/html; charset=UTF-8")
+# print("Content-type: text/html; charset=UTF-8")
 utf8stdout = open(1, 'w', encoding='utf-8',closefd=False)
-f = open("./proxy2.txt","a")
+#f = open("./proxy2.txt","a")
 
 #f.write(str(a)+"\n")
 print("")
@@ -71,10 +71,10 @@ else:
 # Un error
   else:
     total_errores = ""
-    f.write("e------------ \n")
-    f.write(str(a))
+    #f.write("e------------ \n")
+    #f.write(str(a))
     for error in a[1]:
-      f.write("erorr \n" + str(error) +"\n")
+      #f.write("erorr \n" + str(error) +"\n")
       total_errores += f"<li>{error}</li>"
     print("""
         <head>
@@ -246,18 +246,4 @@ else:
       </script>
       </body>
     </html>""",file=utf8stdout)
-#def printFunc(forms):
-#  for key in forms.keys():
-#    print("<h1>")
-#    print(forms[key])
-#    print("</h1>")
-#f.write(str(a))
-#form = cgi.FieldStorage()
-#if cgi.FieldStorage():
-#  print("<h1>" + str(form['region']) + "</h1>")
-#  print("<h1>" + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + "</h1>")
-#  f.write(str(form['region']) + "\n")
-#  #validacion.check_form(form)
-#print("<h1>asdaff</h1>")
-
   

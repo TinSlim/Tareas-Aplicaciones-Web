@@ -15,7 +15,7 @@ from data_base import *
 
 database = DB('localhost',USER_DB,PASS_DB,DB_DB)
 
-f = open("./proxy.txt","a")
+# f = open("./proxy.txt","a")
 
 def check_form(formulario):
     # primero se revisa que estén los atributos:
@@ -176,7 +176,7 @@ def check_form(formulario):
     resultado_total = True
     errores = ""
     for resultado in resultados_unicos:
-        f.write("CalcTotal" + str(resultado[0]) + "\n")
+        #f.write("CalcTotal" + str(resultado[0]) + "\n")
         if not resultado[0]:
             errores += "<li>" + resultado[1] + "</li>"
         resultado_total = resultado_total and resultado[0]
@@ -398,7 +398,7 @@ def add_fotos(form):
                 path_archivo = 'T2/media/'+hash_archivo
                 open(path_archivo,'wb').write(fileitem.file.read())
                 size = os.fstat(fileitem.file.fileno()).st_size
-                f.write("size: "+ str(size) + "\n")
+                #f.write("size: "+ str(size) + "\n")
                 if size <= 12000000:
                     tipo_real = filetype.guess(path_archivo)
                     if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
@@ -421,7 +421,7 @@ def add_fotos(form):
             if name_form in form.keys():
                     if type(form[name_form]) is list:
                         if (len(form[name_form])):
-                            f.write("Error-val"+"tesxt+"+"\n ---")
+                            #f.write("Error-val"+"tesxt+"+"\n ---")
                             return (False,"Hay más de 5 fotos en un avistamiento")
                         for foto in form[name_form]:
                             offset_foto += 1
@@ -432,7 +432,7 @@ def add_fotos(form):
                                 path_archivo = 'T2/media/'+hash_archivo
                                 open(path_archivo,'wb').write(fileitem.file.read())
                                 size = os.fstat(fileitem.file.fileno()).st_size
-                                f.write("size: "+ str(size) + "\n")
+                                #f.write("size: "+ str(size) + "\n")
                                 if size <= 12000000:
                                     tipo_real = filetype.guess(path_archivo)
                                     if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
@@ -456,7 +456,7 @@ def add_fotos(form):
                             path_archivo = 'T2/media/'+hash_archivo
                             open(path_archivo,'wb').write(fileitem.file.read())
                             size = os.fstat(fileitem.file.fileno()).st_size
-                            f.write("size: "+ str(size) + "\n")
+                            #f.write("size: "+ str(size) + "\n")
                             if size <= 12000000:
                                 tipo_real = filetype.guess(path_archivo)
                                 if ("image" or "gif" or "jpg") in str(tipo_real).lower() :
@@ -475,7 +475,7 @@ def add_fotos(form):
         for group in fotos_paths:
             for path_foto in group:
                 os.remove(path_foto[0])
-        f.write("Error-val"+str(error)+"\n ---")
+        #f.write("Error-val"+str(error)+"\n ---")
         return (False,error)
     return (True,fotos_paths)
 
