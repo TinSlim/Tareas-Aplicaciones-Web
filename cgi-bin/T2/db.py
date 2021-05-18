@@ -70,19 +70,6 @@ class DB:
 
     #def save_image(self,data):
 
-    def save_doctor(self, data):
-        sql_query = '''
-        INSERT INTO medico (nombre,experiencia,especialidad,foto,email,celular) VALUES (%s,%s,%s,"a",%s,%s)
-        '''
-        self.cursor.execute(sql_query,data)
-        self.db.commit()
-
-    def get_doctors(self):
-        sql_query = '''
-        SELECT * FROM medico
-        '''
-        self.cursor.execute(sql_query)
-        return self.cursor.fetchall()
 
     def get_region_id(self,region):
         sql_query = f"""

@@ -20,37 +20,51 @@ f = open("./proxy.txt","a")
 def check_form(formulario):
     # primero se revisa que estén los atributos:
     valores_correctos = []
+    errores_final = []
     #----- Region
+    
     if "region" in formulario.keys():
         resultado_region = valida_region(formulario['region'].value)
     else:
         resultado_region = (False,"El formulario no contiene región")
+    if not resultado_region[0]:
+        errores_final.append(resultado_region[1])
     
     #----- Comuna
     if "comuna" in formulario.keys():
         resultado_comuna = valida_comuna(formulario['comuna'].value,resultado_region)
     else:
-        return (False, "El formulario no contiene comuna")
+        resultado_comuna = (False, "El formulario no contiene comuna")
+    if not resultado_comuna[0]:
+        errores_final.append(resultado_comuna[1])
     #----- Sector
     if "sector" in formulario.keys():
         resultado_sector = valida_sector(formulario['sector'].value)
     else:
         resultado_sector = (True,"")
+    if not resultado_sector[0]:
+        errores_final.append(resultado_sector[1])
     #----- Nombre
     if "nombre" in formulario.keys():
         resultado_nombre = valida_nombre(formulario['nombre'].value)
     else:
         resultado_nombre = (False,"El formulario no contiene nombre")
+    if not resultado_nombre[0]:
+        errores_final.append(resultado_nombre[1])
     #----- Email
     if "email" in formulario.keys():
         resultado_email = valida_email(formulario['email'].value)
     else:
         resultado_email = (False,"El formulario no contiene email")
+    if not resultado_email[0]:
+        errores_final.append(resultado_email[1])
     #----- Celular
     if "celular" in formulario.keys():
         resultado_celular = valida_celular(formulario['celular'].value)
     else:
         resultado_celular = (True,"")
+    if not resultado_celular[0]:
+        errores_final.append(resultado_celular[1])
     
     
 
@@ -75,7 +89,7 @@ def check_form(formulario):
                 fecha_ok = fecha_ok and fecha_actual[0]
             resultado_fecha = (fecha_ok,fechas_todas)
             if not fecha_ok:
-                fecha_error = "Una fecha es inválida"
+                resultado_fecha =(False, "Una fecha es inválida")
         else:
             cantidad_fechas = 1
             fecha_actual = valida_fecha(formulario['dia-hora-avistamiento'].value)
@@ -83,11 +97,11 @@ def check_form(formulario):
             fecha_ok = fecha_ok and fecha_actual[0]
             resultado_fecha = (fecha_ok,fechas_todas)
             if not fecha_ok:
-                fecha_error = "Fecha es inválida"
+                resultado_fecha =(False, fecha_actual[1])
     else:
-        resultado_fecha = (False,[])
-        fecha_error = "No se ingresaron fechas"
-    
+        resultado_fecha = (False,"No se ingresaron fechas")
+    if not resultado_fecha[0]:
+        errores_final.append(resultado_fecha[1])
     
     #f.write(fechas_todas + "\n")   
     #------- Tipo
@@ -105,7 +119,7 @@ def check_form(formulario):
                 tipos_ok = tipos_ok and tipo_actual[0]
             resultado_tipo = (tipos_ok,tipos_todos)
             if not tipos_ok:
-                tipo_error = "Una fecha es inválida"
+                resultado_tipo = (False,"Un tipo es inválido")
         else:
             cantidad_tipos = 1
             tipo_actual = valida_tipo(formulario['tipo-avistamiento'].value)
@@ -113,18 +127,17 @@ def check_form(formulario):
             tipos_ok = tipos_ok and tipo_actual[0]
             resultado_tipo = (tipos_ok,tipos_todos)
             if not tipos_ok:
-                tipo_error = "Tipo inválida"
+                resultado_tipo = (False,"Tipo inválido")
     else:
-        resultado_tipo = (False,[])
-        tipo_error = "El formulario no contiene tipos"
+        resultado_tipo = (False,"El formulario no contiene tipos")
+    if not resultado_tipo[0]:
+        errores_final.append(resultado_tipo[1])
     
 
     # ----- fotos 
     imgs_ok = True
     images_paths = []
     
-    
-
 
     #------- Estado
 
@@ -143,7 +156,7 @@ def check_form(formulario):
                 estados_ok = estados_ok and estado_actual[0]
             resultado_estado = (estados_ok,estados_todos)
             if not estados_ok:
-                estado_error = "Algún estado es inválido"
+                resultado_estado = (False,"Algún estado es inválido")
         else:
             cantidad_estados = 1
             estado_actual = valida_estado(formulario['estado-avistamiento'].value)
@@ -151,12 +164,15 @@ def check_form(formulario):
             estados_ok = estados_ok and estado_actual[0]
             resultado_estado = (estados_ok,estados_todos)
             if not estados_ok:
-                estado_error = "El estado es inválido"
+                resultado_estado = (False,"El estado es inválido")
+                
     else:
-        resultado_estado = (False,[])
-        estado_error = "El formulario no contiene estados"
+        resultado_estado = (False,"El formulario no contiene estados")
 
-    
+    if not resultado_estado[0]:
+        errores_final.append(resultado_estado[1])
+
+    # TODO
     resultados_unicos = [resultado_region, resultado_comuna, resultado_sector, resultado_nombre, resultado_email,resultado_celular]
     resultado_total = True
     errores = ""
@@ -173,7 +189,9 @@ def check_form(formulario):
     if (cantidad_fechas == cantidad_tipos == cantidad_estados) and (fecha_ok and tipos_ok and estados_ok) and resultado_total:
         # Todas las condiciones anteriores están OK
         fotos_paths_actuales = add_fotos(formulario)
-        f.write(str(fotos_paths_actuales))
+        if not fotos_paths_actuales[0]:
+            errores_final.append(fotos_paths_actuales[1])
+        #f.write(str(fotos_paths_actuales))
         if fotos_paths_actuales[0] and len(fotos_paths_actuales[1]) == cantidad_fechas:
             # Todo Ok, queda agregar las cosas
             #----- Avistamiento
@@ -186,14 +204,12 @@ def check_form(formulario):
                 for foto in fotos_paths_actuales[1][i]:
                     database.save_foto((foto[0],foto[1],id_detalle))
                 i = i - 1
+            return (True,[])
         else:
-            f.write("Final false \n")
-            return False
+            #f.write("Final false \n")
+            return (False,errores_final)
     else:
-        f.write("Final false \n")
-        return False
-    f.write("Final true \n")
-    return True
+        return (False,errores_final)
 
 
     
@@ -317,14 +333,19 @@ def valida_fecha(fecha):
                 return (False,"Fecha inválida")
             if dia == "29":
                 if ((anho_numero % 4 == 0) and (anho_numero % 100 != 0)) or (anho_numero % 400 == 0):
-                    
-                    return (True,datetime.strptime(fecha, '%Y-%m-%d %H:%M'))
+                    if datetime.strptime(fecha, '%Y-%m-%d %H:%M') <= datetime.now():
+                        return (True,datetime.strptime(fecha, '%Y-%m-%d %H:%M'))
+                    else:
+                        return (False, "Fecha aún no ocurre")
                 else:
                     return (False,"Fecha inválida")
         elif mes in ["02","04","06","09","11"] and dia == "31":
-            return (False,"Fecha inválida")
+            return (False,"Fecha inválidae")
         else:
-            return (True,datetime.strptime(fecha, '%Y-%m-%d %H:%M'))
+            if datetime.strptime(fecha, '%Y-%m-%d %H:%M') <= datetime.now():
+                return (True,datetime.strptime(fecha, '%Y-%m-%d %H:%M'))
+            else:
+                return (False, "Fecha aún no ocurre")
     else:
         return (False,"Fecha inválida")
     
@@ -423,8 +444,8 @@ def add_fotos(form):
                     error = "Archivo muy pesado"
                     imgs_ok = imgs_ok and False
     else:
-        return (False) #TODO
-    
+        return (False, "No hay fotos")
+
     i = 0
     if imgs_ok:
         while i < cantidad_fotos:
@@ -432,7 +453,8 @@ def add_fotos(form):
             if name_form in form.keys():
                     if type(form[name_form]) is list:
                         if (len(form[name_form])):
-                            return (False,[])
+                            f.write("Error-val"+"tesxt+"+"\n ---")
+                            return (False,"Hay más de 5 fotos en un avistamiento")
                         for foto in form[name_form]:
                             offset_foto += 1
                             fileitem = foto
@@ -480,10 +502,12 @@ def add_fotos(form):
                                 error = "Archivo muy pesado"
                                 imgs_ok = imgs_ok and False
             i += 1
+    
     if not imgs_ok:
         for group in fotos_paths:
             for path_foto in group:
                 os.remove(path_foto[0])
+        f.write("Error-val"+str(error)+"\n ---")
         return (False,error)
     return (True,fotos_paths)
 

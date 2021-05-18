@@ -50,7 +50,7 @@ navbar = """<nav class="navbar is-primary">
         <a class="navbar-item navbar-item has-text-light" href="avistamientos.py">
           Listado de Avistamientos
         </a>
-        <a class="navbar-item navbar-item has-text-light" href="estadisticas.html">
+        <a class="navbar-item navbar-item has-text-light" href="../../T2/htmls/estadisticas.html">
           Estadísticas
         </a>
       </div>
@@ -235,7 +235,7 @@ formulario_informar = """
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <h2 class="modal-card-title">Modal title</h2>
+              <h2 class="modal-card-title"> </h2>
             </header>
             <section class="modal-card-body">
               <h2>¿Está seguro que desea enviar esta información? </h2>
@@ -260,3 +260,4 @@ formulario_informar = """
       </form>
     </div>
   </div>"""
+
