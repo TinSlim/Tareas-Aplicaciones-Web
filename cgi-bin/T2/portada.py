@@ -19,34 +19,15 @@ print("Content-type: text/html; charset=UTF-8")
 utf8stdout = open(1, 'w', encoding='utf-8',closefd=False)
 
 print("")
-print("""<!DOCTYPE html><html lang="es">""")
+print("""<!DOCTYPE html><html lang="es">""",file=utf8stdout)
 print(inicio_head,file=utf8stdout)
-print("<body>")
+print("<body>",file=utf8stdout)
 print(navbar,file=utf8stdout)
 print(hero_portada,file=utf8stdout)
 
 if "state" in form.keys():
   if form["state"].value == "success":
-    print("""<!-- Modal -->
-          <div class="modal is-active">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-              <header class="modal-card-head">
-                <h2 class="modal-card-title">Se recibió la información correctamente :)</h2>
-              </header>
-              <section class="modal-card-body">
-                <h2> Gracias por registrar su avistamiento </h2>
-                <figure class="image is-128x128">
-                  <img src="./../../T2/images/cucaMexicana.jpg" alt="Cucaracha con sombrero mexicano">
-                </figure>
-              </section>
-              <footer class="modal-card-foot">
-                <div class="buttons">
-                  <button type="button" class="button is-success" onclick="hide_modal_form(this)"> Cerrar </button>
-                </div>
-              </footer>
-            </div>
-          </div>""",file=utf8stdout)
+    print("""<div class="modal is-active"><div class="modal-background"></div><div class="modal-card"> <header class="modal-card-head"><h2 class="modal-card-title">Se recibió la información correctamente :)</h2> </header> <section class="modal-card-body"><h2> Gracias por registrar su avistamiento</h2> <figure class="image is-128x128"> <img src="./../../T2/images/cucaMexicana.jpg" alt="Cucaracha con sombrero mexicano"> </figure> </section> <footer class="modal-card-foot"><div class="buttons"> <button type="button" class="button is-success" onclick="hide_modal_form(this)"> Cerrar </button></div> </footer></div></div>""",file=utf8stdout)
     
 
 print("""
