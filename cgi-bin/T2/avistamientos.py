@@ -5,6 +5,7 @@ import cgi
 import cgitb
 import html
 cgitb.enable()
+from datetime import datetime
 
 from db import DB
 from data_base import *
@@ -56,10 +57,10 @@ query = database.avistamientos_query(page_number)
 por_mostrar = len(query)
 for avist in query:    
     print(f"""<tr class="pointer" onmouseout="deselect_row(this)" onmousemove="select_row(this)" onclick="window.location='avistamiento.py?num={avist[6]}'">""",file=utf8stdout)
-    print(f"<th>{avist[0]}</th>",file=utf8stdout)
-    print(f"<th>{avist[1]}</th>",file=utf8stdout)
-    print(f"<th>{avist[2]}</th>",file=utf8stdout)
-    print(f"<th>{avist[3]}</th>",file=utf8stdout)
+    print(f"<th>{avist[0].strftime('%Y-%m-%d %H:%M')}</th>",file=utf8stdout)
+    print(f"<th>{html.escape(avist[1])}</th>",file=utf8stdout)
+    print(f"<th>{html.escape(avist[2])}</th>",file=utf8stdout)
+    print(f"<th>{html.escape(avist[3])}</th>",file=utf8stdout)
     print(f"<th>{avist[4]}</th>",file=utf8stdout)
     print(f"<th>{avist[5]}</th>",file=utf8stdout)
     print("</tr>",file=utf8stdout)

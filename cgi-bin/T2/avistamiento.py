@@ -41,30 +41,30 @@ if 'num' in form.keys():
                         <h2 class="title">Lugar:</h2>
                         <div class="content mb-3">
                             <p class="subtitle is-5 mb-1"><b>Región:</b></p>
-                            <p>{resultado[0][0]}</p>
+                            <p>{html.escape(resultado[0][0])}</p>
                         </div>
                         <div class="content mb-3">
                             <h3 class="subtitle is-5 mb-1"> <b>Comuna:</b></h3>
-                            <p>{resultado[0][1]}</p>
+                            <p>{html.escape(resultado[0][1])}</p>
                         </div>
                         <div class="content mb-3">
                             <h3 class="subtitle is-5 mb-1"> <b>Sector:</b></h3>
-                            <p>{resultado[0][2]}</p>
+                            <p>{html.escape(resultado[0][2])}</p>
                         </div>
                     </div>
                     <div class="column">
                         <h2 class="title">Datos de Contacto:</h2>
                         <div class="content mb-3">
                             <p class="subtitle is-5 mb-1"><b>Nombre:</b></p>
-                            <p>{resultado[0][3]}</p>
+                            <p>{html.escape(resultado[0][3])}</p>
                         </div>
                         <div class="content mb-3">
                             <h3 class="subtitle is-5 mb-1"> <b>Email:</b></h3>
-                            <p>{resultado[0][4]}</p>
+                            <p>{html.escape(resultado[0][4])}</p>
                         </div>
                         <div class="content mb-3">
                             <h3 class="subtitle is-5 mb-1"> <b>Número de Celular:</b></h3>
-                            <p>{resultado[0][5]}</p>
+                            <p>{html.escape(resultado[0][5])}</p>
                         </div>
                     </div>
                 </div>
@@ -83,15 +83,15 @@ if 'num' in form.keys():
                                     <h2 class="title">Avistamiento</h2>
                                     <div class="content mb-3">
                                         <p class="subtitle is-5 mb-1"><b>Día hora:</b></p>
-                                        <p>{foto[1]}</p>
+                                        <p>{foto[1].strftime('%Y-%m-%d %H:%M')}</p>
                                     </div>
                                     <div class="content mb-3">
                                         <p class="subtitle is-5 mb-1"><b>Tipo:</b></p>
-                                        <p>{foto[2]}</p>
+                                        <p>{html.escape(foto[2])}</p>
                                     </div>
                                     <div class="content mb-3">
                                         <p class="subtitle is-5 mb-1"><b>Estado:</b></p>
-                                        <p>{foto[3]}</p>
+                                        <p>{html.escape(foto[3])}</p>
                                     </div>
                             <! - Fotos! >        
                                     <div class="block">
@@ -101,22 +101,22 @@ if 'num' in form.keys():
                 if contador == 0: #primera foto
                     print(f"""<div class="block tile is-ancestor mb-5">
                                     <div class="tile is-3">
-                                        <img class="pointer-image" onclick="show_modal(this)" src="../../{foto[4]}" alt="{foto[5]}" width="320" height="240">
+                                        <img class="pointer-image" onclick="show_modal(this)" src="../../{html.escape(foto[4])}" alt="{html.escape(foto[5])}" width="320" height="240">
                                         <div class="modal">
                                             <div class="modal-background"></div>
                                             <div class="modal-content">
-                                                <img src="../../{foto[4]}" alt="{foto[5]}"  width="800" height="600">
+                                                <img src="../../{html.escape(foto[4])}" alt="{html.escape(foto[5])}"  width="800" height="600">
                                             </div>
                                             <button class="modal-close is-large" aria-label="close" onclick="hide_modal(this)"></button>
                                         </div>
                                     </div>""",file=utf8stdout)
                 elif contador == 1 or contador == 2 or contador == 3:
                     print(f"""<div class="tile is-3">
-                                <img class="pointer-image" onclick="show_modal(this)" src="../../{foto[4]}" alt="{foto[5]}" width="320" height="240">
+                                <img class="pointer-image" onclick="show_modal(this)" src="../../{html.escape(foto[4])}" alt="{html.escape(foto[5])}" width="320" height="240">
                                 <div class="modal">
                                     <div class="modal-background"></div>
                                     <div class="modal-content">
-                                        <img src="../../{foto[4]}" alt="{foto[5]}"  width="800" height="600">
+                                        <img src="../../{html.escape(foto[4])}" alt="{html.escape(foto[5])}"  width="800" height="600">
                                     </div>
                                     <button class="modal-close is-large" aria-label="close" onclick="hide_modal(this)"></button>
                                 </div>
@@ -129,11 +129,11 @@ if 'num' in form.keys():
                             </div>
                             <div class="block tile is-ancestor">
                                 <div class="tile is-3">
-                                    <img class="pointer-image" onclick="show_modal(this)" src="../../{foto[4]}" alt="{foto[5]}" width="320" height="240">
+                                    <img class="pointer-image" onclick="show_modal(this)" src="../../{html.escape(foto[4])}" alt="{html.escape(foto[5])}" width="320" height="240">
                                     <div class="modal">
                                         <div class="modal-background"></div>
                                         <div class="modal-content">
-                                            <img src="../../{foto[4]}" alt="{foto[5]}"  width="800" height="600">
+                                            <img src="../../{html.escape(foto[4])}" alt="{html.escape(foto[5])}"  width="800" height="600">
                                         </div>
                                         <button class="modal-close is-large" aria-label="close" onclick="hide_modal(this)"></button>
                                     </div>

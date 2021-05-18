@@ -137,5 +137,10 @@ class DB:
     def get_avist_pages(self):
         sql_query = "SELECT COUNT(*) FROM avistamiento"
         self.cursor.execute(sql_query)
-        return int(self.cursor.fetchone()[0]) // 5
+        resultado = int(self.cursor.fetchone()[0])
+        if resultado % 5 == 0:
+            final = max(0,resultado//5 -1)
+        else:
+            final = resultado//5
+        return final
         
