@@ -69,7 +69,7 @@ function validar_nombre(id_nombre) {
 function validar_email(id_correo) {
     var correo = document.getElementById(id_correo);
     var correo_actual = correo.value;
-    var regex = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/ // TODO revisar este regex después
+    var regex = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/
 
     if (correo_actual == ""){
         corregir_mensaje += "<li> Ingrese su email </li>";
@@ -190,11 +190,11 @@ function validar_imagenes(clase_imagen) {
         imagen = nodo.value;
         if (imagen.length < 1) {
             if (cantidad_imagenes > 1) {
-                corregir_mensaje += "<li> No se adjuntaron todas las imágenes </li>"; //TODO Revisar esto
+                corregir_mensaje += "<li> No se adjuntaron todas las imágenes </li>";
                 return false;
             }
             else {
-                corregir_mensaje += "<li> No se adjuntó la imagen </li>"; // TODO Revisar esto
+                corregir_mensaje += "<li> No se adjuntó la imagen </li>";
                 return false;
             }
         }
