@@ -308,7 +308,7 @@ def valida_fecha(fecha):
                 else:
                     return (False,"Fecha inválida")
         elif mes in ["02","04","06","09","11"] and dia == "31":
-            return (False,"Fecha inválidae")
+            return (False,"Fecha inválida")
         else:
             if datetime.strptime(fecha, '%Y-%m-%d %H:%M') <= datetime.now():
                 return (True,datetime.strptime(fecha, '%Y-%m-%d %H:%M'))
