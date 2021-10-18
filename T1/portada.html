@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vivan los Bichos</title>
+  <link rel="stylesheet" href="css/mystyles.css">
+  <link rel="stylesheet" href="css/hero_style.css">
+  <script src="js/nuevafoto.js"></script>
+  <script src="https://kit.fontawesome.com/929bc70b66.js" crossorigin="anonymous"></script>
+  <script src="js/new_regiones_comunas.js"></script>
+  <script src="js/avistamiento_singular.js"></script>
+  <script src="js/validacion.js"></script>
+</head>
+
+<body>
+
+  <!--NavBar-->
+  <nav class="navbar is-primary">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="portada.html">
+        <span class="icon has-text-white">
+          <i class="fas fa-bug fa-lg fa-spin"></i>
+        </span>
+        <p class="title has-text-white">Vivan los Bichos</p>
+      </a>
+
+      <div class="navbar-burger" data-target="navbarShow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="navbarShow" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-light" href="portada.html">
+          Home
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="informar.html">
+          Informar Avistamiento
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="avistamientos.html">
+          Listado de Avistamientos
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="estadisticas.html">
+          Estadísticas
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!--Hero Avistamiento-->
+  <section class="hero is-primary is-large has-background">
+    <img class="hero-background is-transparent" src="images/hero/pexels-erik-karits-3737288.jpg" alt="imagen de bienvenida">
+    <div class="hero-body">
+      <h2 class="title is-3 has-text-white"> Bienvenido/a </h2>
+      <p class="subtitle is-5"> Al registrador de avistamientos de insectos, arácnidos y miriápodos</p>
+    </div>
+  </section>
+
+
+  <div class="columns is-mobile mt-5 mb-5">
+    <div class="column is-three-fifths is-offset-one-fifth">
+      <div class="box table-container">
+        <p class="subtitle is-4"> Últimos avistamientos: </p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha - hora</th>
+              <th>Comuna</th>
+              <th>Sector</th>
+              <th>Tipo</th>
+              <th>Foto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>2021-03-30 13:21</th>
+              <td>Chillán</td>
+              <td>Plaza de Armas</td>
+              <td>insecto</td>
+              <td>
+                <img src="images/avistamientos/01/2-1.jpg" width="320" height="240" alt="">
+              </td>
+            </tr>
+            <tr>
+              <th>2021-03-29 13:21</th>
+              <td>La Florida</td>
+              <td>Vicuña Mackenna</td>
+              <td>arácnido</td>
+              <td>
+                <img src="images/avistamientos/02/3-1.jpg" width="320" height="240" alt="">
+              </td>
+            </tr>
+            <tr>
+              <th>2021-03-27 13:21</th>
+              <td>La Florida</td>
+              <td>Vicuña Mackenna</td>
+              <td>insecto</td>
+              <td>
+                <img src="images/avistamientos/01/1-1.jpg" width="320" height="240" alt="">
+              </td>
+            </tr>
+            <tr>
+              <th>2021-03-25 13:11</th>
+              <td>Quirihue</td>
+              <td>Plaza de Armas</td>
+              <td>arácnido</td>
+              <td>
+                <img src="images/avistamientos/02/2-1.jpg" width="320" height="240" alt="">
+              </td>
+            </tr>
+
+            <tr>
+              <th>2021-03-22 13:09</th>
+              <td>La Florida</td>
+              <td>Vicuña Mackenna</td>
+              <td>arácnido</td>
+              <td><img src="images/avistamientos/02/1-1.jpg" width="320" height="240" alt=""></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="columns">
+      <div class="column content has-text-centered">
+        <div>
+          <p><strong>CC5002 - Desarrollo de Aplicaciones Web</strong></p>
+        </div>
+        <a href="#">Cristóbal Torres Gutiérrez</a>
+      </div>
+      <div class="column">
+      </div>
+      <div class="column">
+        <p>
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">
+              <img style="border:0;width:88px;height:31px"
+                  src="http://jigsaw.w3.org/css-validator/images/vcss"
+                  alt="¡CSS Válido!" />
+          </a>
+      </p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!--NavBar-->
+  <nav class="navbar is-primary">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="portada.html">
+        <span class="icon has-text-white">
+          <i class="fas fa-bug fa-lg fa-spin"></i>
+        </span> <p class="title has-text-white">Vivan los Bichos</p>
+      </a>
+    
+      <div class="navbar-burger" data-target="navbarShow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="navbarShow" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-light" href="portada.html">
+          Home
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="informar.html">
+          Informar Avistamiento
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="avistamientos.html">
+          Listado de Avistamientos
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="estadisticas.html">
+          Estadísticas
+        </a>
+      </div>
+    </div>
+  </nav>

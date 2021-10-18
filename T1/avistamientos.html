@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vivan los Bichos</title>
+    <link rel="stylesheet" href="css/mystyles.css">
+    <link rel="stylesheet" href="css/hero_style.css">
+    <link rel="stylesheet" href="css/pointer_style.css">
+    <script src="js/avistamientos.js"></script>
+    <script src="https://kit.fontawesome.com/929bc70b66.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!--NavBar-->
+  <nav class="navbar is-primary">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="portada.html">
+        <span class="icon has-text-white">
+          <i class="fas fa-bug fa-lg fa-spin"></i>
+        </span> <p class="title has-text-white">Vivan los Bichos</p>
+      </a>
+    
+      <div class="navbar-burger" data-target="navbarShow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div id="navbarShow" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-light" href="portada.html">
+          Home
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="informar.html">
+          Informar Avistamiento
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="avistamientos.html">
+          Listado de Avistamientos
+        </a>
+        <a class="navbar-item navbar-item has-text-light" href="estadisticas.html">
+          Estadísticas
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!--Hero Avistamiento-->
+  <section class="hero is-primary is-small-with-navbar has-background">
+    <img class= "hero-background is-transparent" src="images/hero/pexels-pixabay-144243.jpg" alt="portada avistamientos">
+    
+    <div class="hero-body">
+      <div>
+        <h2 class="title is-3"> Listado de Avistamientos</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabla de avistamientos -->
+    <div class="columns is-mobile mt-5 mb-5">
+        <div class="box column is-three-fifths is-offset-one-fifth">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Fecha - hora</th>
+                <th>Comuna</th>
+                <th>Sector</th>
+                <th>Nombre contacto</th>
+                <th>total avistamientos</th>
+                <th>total fotos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="pointer" onmouseout="deselect_row(this)" onmousemove="select_row(this)" onclick="window.location='avistamientos_insectos/avistamiento_01.html'">
+                <th>2021-03-29 13:24</th>
+                <td>Chillán</td>
+                <td>Plaza de Armas</td>
+                <td>Cristóbal</td>
+                <td>2</td>
+                <td>7</td>
+              </tr>
+              <tr class="pointer" onmouseout="deselect_row(this)" onmousemove="select_row(this)" onclick="window.location='avistamientos_insectos/avistamiento_01.html'">
+                <th>2021-03-29 13:21</th>
+                <td>La Florida</td>
+                <td>Vicuña Mackenna</td>
+                <td>Fabián</td>
+                <td> 19 </td>
+                <td>19</td>
+              </tr>
+              <tr class="pointer" onmouseout="deselect_row(this)" onmousemove="select_row(this)" onclick="window.location='avistamientos_insectos/avistamiento_01.html'">
+                <th>2021-03-29 12:21</th>
+                <td>Providencia</td>
+                <td>Plaza Italia</td>
+                <td>Jaime</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+              <tr class="pointer" onmouseout="deselect_row(this)" onmousemove="select_row(this)" onclick="window.location='avistamientos_insectos/avistamiento_01.html'">
+                <th>2021-03-22 11:22</th>
+                <td>Providencia</td>
+                <td>Plaza Italia</td>
+                <td>Jaime</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+              <tr class="pointer" onmouseout="deselect_row(this)" onmousemove="select_row(this)" onclick="window.location='avistamientos_insectos/avistamiento_01.html'">
+                <th>2021-03-19 11:22</th>
+                <td>Providencia</td>
+                <td>Plaza Italia</td>
+                <td>Jaime</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  
+  <br><br><br>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="columns">
+      <div class="column content has-text-centered">
+        <div>
+          <p><strong>CC5002 - Desarrollo de Aplicaciones Web</strong></p>
+        </div>
+        <a href="#">Cristóbal Torres Gutiérrez</a>
+      </div>
+      <div class="column">
+      </div>
+      <div class="column">
+        <p>
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">
+              <img style="border:0;width:88px;height:31px"
+                  src="http://jigsaw.w3.org/css-validator/images/vcss"
+                  alt="¡CSS Válido!" />
+          </a>
+      </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

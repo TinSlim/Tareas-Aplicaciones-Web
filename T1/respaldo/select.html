@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/regiones_comunas.js"></script>
+</head>
+<body>
+    <form>
+        <select name="select" id="regiones" onchange="region_change(this)">
+            <option value="value1">Value 1</option>
+            <option value="value2" selected>Value 2</option>
+            <option value="value3">Value 3</option>
+          </select>
+          <select name="select2" class="comunas">
+          </select>
+    </form>
+<script>
+    make_regiones();
+</script>
+</body>
+</html>
